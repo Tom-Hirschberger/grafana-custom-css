@@ -3,7 +3,8 @@
 As Grafana does not provide any way to make the background of embedded panels transparent or change any style i wrote a small script that patches the "index.html" of Grafana to include a custom css file if a specific theme is active.
 The script registers as a system service and checks the file at each reboot. This way even if the Grafana file is overriden during a update the patch will be activated after the next reboot.
 
-:warning: Even it the patch process is automated it is a ugly hack. It might work with future versions but it might not! 
+:warning: **Even it the patch process is automated it is a ugly hack. It might work with future versions but it might not!**  
+
 The script is tested with the following scenario:
 
 * Grafana 9.2.5 on Ubuntu 22.04 and Raspberry OS (Bullseye 32Bit)

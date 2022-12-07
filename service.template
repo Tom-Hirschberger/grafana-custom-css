@@ -1,0 +1,11 @@
+[Unit]
+Description=Grafana custom css patch
+Before=###GRAFANA_SERVICE###
+
+[Service]
+User=root
+Type=simple
+ExecStart=/usr/bin/python3 ###PATCH_SCRIPT_PATH### -d ###GRAFANA_DIR### -c ###CSS_FILE### -t ###THEME###
+
+[Install]
+WantedBy=multi-user.target

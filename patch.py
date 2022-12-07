@@ -123,7 +123,7 @@ def removeCustomCSSDir(grafanaRootDir, customCSSDir):
 def isGrafanaIndexFilePatched(grafanaIndexFilePath, customCSSFilePath):
     print ("Checking if the index file is patched already...")
     with open(grafanaIndexFilePath, 'r') as file:
-        data = file.read()       
+        data = file.read()
         if ']]%s"/>'%customCSSFilePath in data:
             return True
         else:
@@ -135,8 +135,9 @@ def patchGrafanaIndexFile(grafanaIndexFilePath, backupExtension, grafanaTheme, c
         backupGrafanaIndexFile(grafanaIndexFilePath, backupExtension)
         newData = None
         with open(grafanaIndexFilePath, 'r') as file:
-            data = file.read()       
-            idx = data.index("</body>")
+            data = file.read()
+            #</style><div class="preloader">
+            idx = data.index('<div class="preloader">')
             newData = data[0:idx]
             newData += '[[ if eq .Theme "'+grafanaTheme+'" ]]<link rel="stylesheet" href="[[.ContentDeliveryURL]]%s"/>[[ end ]]' % (customCSSFilePath)
             newData += data[idx:]
